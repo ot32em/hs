@@ -1,3 +1,7 @@
+-- https://hackage.haskell.org/package/digestive-functors
+-- https://github.com/jaspervdj/digestive-functors/blob/master/examples/tutorial.lhs
+-- https://github.com/jaspervdj/digestive-functors
+
 module Main where
 
 
