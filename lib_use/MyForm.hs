@@ -1,4 +1,4 @@
-module MyForm where
+module Main where
 
 
 data User = User {
@@ -7,13 +7,18 @@ data User = User {
   phone :: String -- [+886|0]912-345678
 } deriving (Show)
 
+userOk :: User
+userOk = User "OT Chen" "ot32em@gmail.com" "0928123456"
 
-enterForm :: IO ()
-enterForm = do
-  print "Name:"
-  n <- getLine
-  print "email: "
-  m <- getLine
-  print "phone number: "
-  p <- getLine
-  print $ User n m p
+userNg :: User
+userNg = User "" "ot32em%gmail.com" "0928z"
+
+validateUser :: User -> IO ()
+validateUser user = do
+  print $ "Name: " ++ name user
+  print $ "email: " ++ email user
+  print $ "phone number: " ++ phone user
+
+
+main :: IO ()
+main = validateUser userOk
