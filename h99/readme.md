@@ -1,4 +1,4 @@
-Start from
+# Start from
 
 https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
@@ -18,6 +18,4 @@ https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
 
 ## Solutions
-- https://wiki.haskell.org/99_questions/Solutions/1    
-- ...
-- https://wiki.haskell.org/99_questions/Solutions/99
+- (\x -> https://wiki.haskell.org/99_questions/Solutions/" ++ (show x)) <$> [1..99]
