@@ -1,7 +1,9 @@
 ## Form v m a
 
-type Form v (m :: * -> *) a =
+``` haskell
+type Form v (m :: * -> *) a = 
   Text.Digestive.Form.Internal.FormTree m v m a
+```
 
 - `v`: string-like to display messages/errors
 - `m`: some monad
@@ -19,25 +21,24 @@ userForm = User
 ```
 
 ``` haskell
-(.:) :: Text -> Form v m a -> Form v m a
--- (.:) :: Monad m => Data.Text.Internal.Text -> Form v m a -> Form v m a
-```
-
-``` haskell
 checkEmail :: Text -> Bool
 checkEmail = isJust . T.find (== '@')
 ```
 
+
 ``` haskell
 text :: Formlet v m Text
 -- text :: (Monad m, Monoid v) => Formlet v m Data.Text.Internal.Text
-
-type Formlet v (m :: * -> *) a = Maybe a -> Form v m a
 ```
 
 ``` haskell
 check :: v -> CheckFn -> Form v m a -> Form v m a
 -- check :: (Monad m, Monoid v) => v -> (a -> Bool) -> Form v m a -> Form v m a
+```
+
+``` haskell
+(.:) :: Text -> Form v m a -> Form v m a
+-- (.:) :: Monad m => Data.Text.Internal.Text -> Form v m a -> Form v m a
 ```
 
 
@@ -46,7 +47,9 @@ check :: v -> CheckFn -> Form v m a -> Form v m a
 ``` haskell
 validateVersion :: Text -> Result Text Version
 validateVersion = maybe (Error "Cannot parse version")
-                         Success . mapM (readMaybe . T.unpack) . T.split (== '.')
+                         Success
+                         . mapM (readMaybe . T.unpack)
+                         . T.split (== '.')
 ```
         
 ``` haskell
@@ -67,7 +70,7 @@ instance [safe] Monoid v => Applicative (Result v)
 
 ``` haskell
 validate :: (a -> Result v b) -> Form v m a -> Form v m b
-validate :: (Monad m, Monoid v) =>
+-- validate :: (Monad m, Monoid v) =>
             (a -> Result v b) -> Form v m a -> Form v m b
 ```
 
