@@ -1,4 +1,5 @@
 ## Form v m a
+
 type Form v (m :: * -> *) a =
   Text.Digestive.Form.Internal.FormTree m v m a
 
@@ -18,24 +19,25 @@ userForm = User
 ```
 
 ``` haskell
+(.:) :: Text -> Form v m a -> Form v m a
+-- (.:) :: Monad m => Data.Text.Internal.Text -> Form v m a -> Form v m a
+```
+
+``` haskell
 checkEmail :: Text -> Bool
 checkEmail = isJust . T.find (== '@')
 ```
 
-
 ``` haskell
 text :: Formlet v m Text
 -- text :: (Monad m, Monoid v) => Formlet v m Data.Text.Internal.Text
+
+type Formlet v (m :: * -> *) a = Maybe a -> Form v m a
 ```
 
 ``` haskell
 check :: v -> CheckFn -> Form v m a -> Form v m a
 -- check :: (Monad m, Monoid v) => v -> (a -> Bool) -> Form v m a -> Form v m a
-```
-
-``` haskell
-(.:) :: Text -> Form v m a -> Form v m a
--- (.:) :: Monad m => Data.Text.Internal.Text -> Form v m a -> Form v m a
 ```
 
 
